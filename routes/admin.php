@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -13,5 +14,6 @@ Route::group([
 ], function () {
     Route::apiResources([
         'categories' => CategoryController::class,
+        'authors' => AuthorController::class,
     ]);
 });
