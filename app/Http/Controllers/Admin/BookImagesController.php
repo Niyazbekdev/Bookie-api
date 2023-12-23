@@ -20,7 +20,10 @@ class BookImagesController extends Controller
     {
         try {
             $image = app(UploadBookImages::class)->execute($request->all(), $book);
-            return new ImageResource($image);
+            return response()->json([
+                'Success' => true,
+                'data' => new ImageResource($image),
+            ]);
         }catch (ValidationException $exception){
             return $this->respondValidatorFailed($exception->validator);
         }

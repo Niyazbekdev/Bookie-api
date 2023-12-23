@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AudioController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -28,5 +29,7 @@ Route::group([
         'orders' => OrderController::class,
         'users' => UserController::class,
         'books.images' => BookImagesController::class,
+        'books.audios' => AudioController::class,
+        'audios' => AudioController::class,
     ]);
 });

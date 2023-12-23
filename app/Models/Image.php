@@ -13,6 +13,6 @@ class Image extends Model
 
     public function url(): string
     {
-        return config('app.url') . '/storage/images/'. $this->image;
+        return config('app.url') . '/storage/images/'. $this->filename;
     }
 }
