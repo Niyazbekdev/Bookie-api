@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             NarratorSeeder::class,
             BookSeeder::class,
             ReviewSeeder::class,
+            PaymentSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }
