@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Amdin;
+namespace App\Services\User;
 
 use App\Models\User;
 use App\Services\BaseService;
