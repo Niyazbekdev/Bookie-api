@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AuthorSeeder::class,
             NarratorSeeder::class,
             BookSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }
