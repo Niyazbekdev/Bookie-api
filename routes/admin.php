@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NarratorController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('admin/logins', LoginController::class);
@@ -24,5 +25,6 @@ Route::group([
         'books' => BookController::class,
         'reviews' => ReviewController::class,
         'orders' => OrderController::class,
+        'users' => UserController::class,
     ]);
 });
