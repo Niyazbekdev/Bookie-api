@@ -41,9 +41,9 @@ class Book extends Model
         return $this->belongsTo(Narrator::class);
     }
 
-    public function reviews(): void
+    public function reviews(): HasMany
     {
-        $this->hasMany(Review::class);
+        return $this->hasMany(Review::class);
     }
 
     public function images(): MorphMany
