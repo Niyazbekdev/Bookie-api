@@ -9,15 +9,17 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('book_order', function (Blueprint $table) {
-            $table->foreignId('order_id')->constrained();
+        Schema::create('book_user', function (Blueprint $table) {
             $table->foreignId('book_id')->constrained();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->boolean('is_access')->default(false);
+            $table->foreignId('audio_id')->constrained();
+            $table->timestamp('time');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('book_order');
+        Schema::dropIfExists('book_user');
     }
 };

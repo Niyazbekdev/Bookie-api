@@ -12,7 +12,8 @@ class BookSeeder extends Seeder
     {
         Book::create([
             'title' => 'Tumaris',
-            'slug' => 'tumaris-qaraqalpaqlar-ózleriniń-kelip',
+            'description' =>'Xaliq dastani',
+            'slug' => 'tumaris',
             'price' => '1700000',
             'language' => 'Qaraqalpaq',
             'category_id' => 1,
