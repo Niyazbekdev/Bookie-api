@@ -2,6 +2,7 @@
 
 namespace App\Services\Image;
 
+use App\Models\Book;
 use App\Models\Image;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\Storage;
@@ -13,16 +14,17 @@ class DeleteBookImages extends BaseService
     {
         return [
             'id' => 'required|exists:images,id',
+            'book_id'  => 'exists:books,id',
         ];
     }
     /**
      * @throws ValidationException
      */
-    public function execute(array $data): bool
+    public function execute(array $data)
     {
         $this->validate($data);
 
-        $image = Image::findOrFail($data['id']);
+        $image = Image::where('imageable_id', $data['book_id'])->findOrFail($data['id']);
         $image->delete();
 
         Storage::disk('public')->delete('images/'. $image['filename']);

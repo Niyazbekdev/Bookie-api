@@ -5,6 +5,7 @@ namespace App\Services\Image;
 use App\Models\Book;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
 class UploadBookImages extends BaseService
@@ -17,6 +18,7 @@ class UploadBookImages extends BaseService
     }
     /**
      * @throws ValidationException
+     * @throws ModelNotFoundException
      */
     public function execute(array $data, Book $book): Model
     {

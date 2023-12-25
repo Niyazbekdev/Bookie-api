@@ -29,11 +29,12 @@ class BookImagesController extends Controller
         }
     }
 
-    public function destroy(string $image): JsonResponse
+    public function destroy(string $book, string $image): JsonResponse
     {
         try{
             app(DeleteBookImages::class)->execute([
                 'id' =>$image,
+                'book_id' => $book,
             ]);
             return $this->respondSuccess();
         }catch (ValidationException $exception){

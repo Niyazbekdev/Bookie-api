@@ -3,13 +3,14 @@
 use App\Http\Controllers\Admin\AudioController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BookController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BookImagesController;
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NarratorController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('admin/logins', LoginController::class);
@@ -17,7 +18,7 @@ Route::apiResource('admin/logins', LoginController::class);
 Route::group([
     'prefix'     => 'admin',
     'as'         => 'admin.',
-    'middleware' => ['auth:sanctum', 'abilities:admin'],
+    'middleware' => ['auth:sanctum', 'ability:admin,superAdmin'],
 ],
     function () {
     Route::apiResources([
@@ -29,7 +30,6 @@ Route::group([
         'orders' => OrderController::class,
         'users' => UserController::class,
         'books.images' => BookImagesController::class,
-        'books.audios' => AudioController::class,
-        'audios' => AudioController::class,
+        'books.audio' => AudioController::class,
     ]);
 });

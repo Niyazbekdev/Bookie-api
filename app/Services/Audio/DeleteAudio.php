@@ -13,6 +13,7 @@ class DeleteAudio extends BaseService
     {
         return [
             'id' => 'required|exists:audio,id',
+            'book_id' => 'exists:books,id',
         ];
     }
     /**
@@ -22,7 +23,7 @@ class DeleteAudio extends BaseService
     {
         $this->validate($data);
 
-        $audio = Audio::findOrFail($data['id']);
+        $audio = Audio::where('book_id', $data['book_id'])->findOrFail($data['id']);
         $audio->delete();
 
         Storage::disk('public')->delete('audios/' . $audio['filename']);

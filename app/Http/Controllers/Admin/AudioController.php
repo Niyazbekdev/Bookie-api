@@ -29,11 +29,12 @@ class AudioController extends Controller
         }
     }
 
-    public function destroy(string $audio): JsonResponse
+    public function destroy(string $book, string $audio): JsonResponse
     {
         try {
             app(DeleteAudio::class)->execute([
                 'id' => $audio,
+                'book_id' => $book,
             ]);
             return  $this->respondSuccess();
         }catch (ValidationException $exception){
