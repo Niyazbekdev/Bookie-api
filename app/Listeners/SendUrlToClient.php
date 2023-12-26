@@ -20,6 +20,8 @@ class SendUrlToClient
         $event->order->save();
 
         $event->order->books;
+        $event->order->save();
+
         $event->order->user_id;
     }
 }

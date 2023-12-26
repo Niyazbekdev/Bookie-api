@@ -21,15 +21,10 @@ class OrderController extends Controller
     {
         try {
             $order = app(StoreOrder::class)->execute($request->all());
-//            event(new OrderPaid($order));
             return new OrderResource($order);
+
         }catch (ValidationException $exception){
             return $this->respondValidatorFailed($exception->validator);
         }
-    }
-
-    public function update()
-    {
-        
     }
 }
