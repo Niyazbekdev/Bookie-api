@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Services\Image\DeleteBookImages;
 use App\Services\Image\UploadBookImages;
 use App\Traits\JsonRespondController;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -39,6 +40,8 @@ class BookImagesController extends Controller
             return $this->respondSuccess();
         }catch (ValidationException $exception){
             return  $this->respondValidatorFailed($exception->validator);
+        }catch (ModelNotFoundException){
+            return $this->respondNotFound();
         }
     }
 
