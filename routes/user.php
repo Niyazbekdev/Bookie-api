@@ -7,14 +7,15 @@ use App\Http\Controllers\User\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('user/categories', [CategoryController::class, 'index']);
+Route::get('user/categories/{category:slug}/books', [BookController::class, 'index']);
+
 Route::group([
     'prefix'     => 'user',
     'as'         => 'user.',
     'middleware' => ['auth:sanctum', 'ability:admin,superAdmin,user'],
 ],
     function () {
-        Route::get('/categories', [CategoryController::class, 'index']);
-        Route::get('/categories/{category:slug}/books', [BookController::class, 'index']);
         Route::get('/books/{book:slug}', [BookController::class, 'show']);
         Route::get('/books/{book:slug}/reviews', [ReviewController::class, 'index']);
         Route::post('/books/{book:slug}/reviews', [ReviewController::class, 'store']);

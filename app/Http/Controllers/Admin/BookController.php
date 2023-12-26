@@ -7,6 +7,7 @@ use App\Http\Resources\Admin\AllBooksResource;
 use App\Http\Resources\Admin\BookResource;
 use App\Models\Book;
 use App\Services\Book\DeleteBook;
+use App\Services\Book\ShowBook;
 use App\Services\Book\StoreBook;
 use App\Services\Book\UpdateBook;
 use App\Traits\JsonRespondController;
@@ -28,11 +29,16 @@ class BookController extends Controller
         return AllBooksResource::collection($book);
     }
 
-    public function show(string $book): BookResource
+    public function show(string $book): JsonResponse|BookResource
     {
-        $book = Book::findOrFail($book);
-
-        return new BookResource($book);
+        try {
+            $app = app(ShowBook::class)->execute([
+                'id' => $book,
+            ]);
+            return new BookResource($app);
+        }catch (ValidationException $exception){
+            return $this->respondValidatorFailed($exception->validator);
+        }
     }
 
     public function store(Request $request): JsonResponse
@@ -56,7 +62,6 @@ class BookController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
-                'language' => $request->language,
             ]);
             return $this->respondSuccess();
         }catch (ValidationException $exception){

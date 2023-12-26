@@ -13,7 +13,7 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => 3,
             'book_id' => 1,
-            'text' => 'qalay aman saw',
+            'text' => 'jaqsi shiqqan',
             'rating' => 3,
         ]);
     }

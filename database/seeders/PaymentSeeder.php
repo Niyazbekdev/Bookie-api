@@ -22,9 +22,5 @@ class PaymentSeeder extends Seeder
             'name' => 'Oson',
         ]);
 
-        Payment::create([
-            'name' => 'Paypal',
-        ]);
-
     }
 }

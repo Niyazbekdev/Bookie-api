@@ -19,7 +19,6 @@ class UpdateBook extends BaseService
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'language' => 'required',
         ];
     }
     /**
@@ -39,7 +38,6 @@ class UpdateBook extends BaseService
             'title' => $data['title'],
             'description' => $data['description'],
             'price' => $data['price'],
-            'language' => $data['language'],
             'slug' => $slug,
         ]);
 

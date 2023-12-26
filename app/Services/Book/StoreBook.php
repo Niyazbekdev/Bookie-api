@@ -18,7 +18,6 @@ class StoreBook extends BaseService
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'language' => 'required',
         ];
     }
     /**
@@ -35,7 +34,6 @@ class StoreBook extends BaseService
             'description' => $data['description'],
             'slug' => $slug,
             'price' => $data['price'],
-            'language' => $data['language'],
             'category_id' => $data['category_id'],
             'author_id' => $data['author_id'],
             'narrator_id' => $data['narrator_id'],

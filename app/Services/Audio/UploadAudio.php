@@ -14,7 +14,7 @@ class UploadAudio extends BaseService
     {
         return [
             'title' => 'required',
-            'filename' => 'required|file|mimes:mpeg,mpga,mp3,wav|max:4048'
+            'filename' => 'required|file|mimes:mpeg,mpga,mp3,wav|max:34048'
         ];
     }
     /**

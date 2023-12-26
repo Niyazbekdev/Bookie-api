@@ -13,7 +13,7 @@ class UploadBookImages extends BaseService
     public function rules(): array
     {
         return [
-            'filename' => 'file|mimes:jpg,bmp,png|max:2048'
+            'filename' => 'required|file|mimes:jpg,bmp,png|max:2048'
         ];
     }
     /**

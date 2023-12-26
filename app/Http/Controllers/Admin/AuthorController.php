@@ -22,7 +22,7 @@ class AuthorController extends Controller
     {
         $author = Author::when($request->search?? null, function ($query, $search){
             $query->search($search);
-        })->paginate(10);
+        })->paginate($request->limit ?? 10);
 
         return AuthorResource::collection($author);
     }
