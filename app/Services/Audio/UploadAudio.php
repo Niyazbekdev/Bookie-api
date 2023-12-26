@@ -29,7 +29,7 @@ class UploadAudio extends BaseService
 
         $data['filename']->store('audios', 'public');
 
-        return $book->audios()->create([
+        return $book->audio()->create([
             'title' => $data['title'],
             'filename' => $name,
             'slug' => $slug,

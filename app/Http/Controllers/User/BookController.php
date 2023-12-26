@@ -5,12 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\BookResource;
 use App\Http\Resources\User\ShowBookResource;
-use App\Models\Book;
 use App\Models\Category;
+use App\Services\Book\ShowBookBySlug;
 use App\Traits\JsonRespondController;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Validation\ValidationException;
 
 class BookController extends Controller
 {
@@ -24,13 +25,15 @@ class BookController extends Controller
         return BookResource::collection($book);
     }
 
-    public function show(string $book)
+    public function show(string $book): ShowBookResource|JsonResponse
     {
         try {
-            $booki = Book::where('slug', $book)->first();
-            return new ShowBookResource($booki);
-        }catch (ModelNotFoundException){
-            return $this->respondNotFound();
+            $app = app(ShowBookBySlug::class)->execute([
+                'slug' => $book,
+            ]);
+            return new ShowBookResource($app);
+        }catch (ValidationException $exception){
+            return $this->respondValidatorFailed($exception->validator);
         }
     }
 }

@@ -51,7 +51,7 @@ class Book extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function audios(): HasMany
+    public function audio(): HasMany
     {
         return $this->hasMany(Audio::class);
     }
