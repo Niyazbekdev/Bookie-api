@@ -27,7 +27,7 @@ class UploadAudio extends BaseService
         $name = $data['filename']->hashName();
         $slug = Str::slug($data['title']);
 
-        $data['filename']->store('audios', 'public');
+        $data['filename']->store('audio', 'public');
 
         return $book->audio()->create([
             'title' => $data['title'],
