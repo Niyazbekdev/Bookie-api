@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,12 @@ class Order extends Model
         'is_paid' => 'boolean',
     ];
 
+    public function url(): Attribute
+    {
+        return new Attribute(
+            get: fn($value, $attributes) => 'payme_url'
+        );
+    }
     public function payment(): BelongsTo
     {
         return $this->belongsTo(Payment::class);
@@ -27,8 +34,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function books(): BelongsToMany
+    public function books():BelongsToMany
     {
-        return $this->belongsToMany(Book::class)->withPivot(['book_id']);
+        return $this->belongsToMany(Book::class)->withPivot('book_id');
     }
 }

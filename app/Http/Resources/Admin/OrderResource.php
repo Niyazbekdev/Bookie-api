@@ -16,7 +16,8 @@ class OrderResource extends JsonResource
             'user' =>  new UserReviewResource($this->user),
             'amount' => $this->amount,
             'is_paid' => $this->is_paid,
-            'books' => BookResource::collection($this->books),
+            'url' => $this->url,
+            //'books' => BookResource::collection($this->books),
         ];
     }
 }

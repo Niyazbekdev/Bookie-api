@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('payment_id')->constrained();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->unsignedMediumInteger('amount');
-            $table->boolean('is_paid');
+            $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
     }

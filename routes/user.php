@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ReviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,11 +13,11 @@ Route::group([
     'middleware' => ['auth:sanctum', 'ability:admin,superAdmin, user'],
 ],
     function () {
-        Route::apiResources([
-            'categories' => CategoryController::class,
-        ]);
+        Route::get('/categories', [CategoryController::class, 'index']);
         Route::get('/categories/{category:slug}/books', [BookController::class, 'index']);
         Route::get('/books/{book:slug}', [BookController::class, 'show']);
         Route::get('/books/{book:slug}/reviews', [ReviewController::class, 'index']);
         Route::post('/books/{book:slug}/reviews', [ReviewController::class, 'store']);
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::post('/orders', [OrderController::class, 'store']);
     });
