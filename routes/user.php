@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix'     => 'user',
     'as'         => 'user.',
-    'middleware' => ['auth:sanctum', 'ability:admin,superAdmin, user'],
+    'middleware' => ['auth:sanctum', 'ability:admin,superAdmin,user'],
 ],
     function () {
         Route::get('/categories', [CategoryController::class, 'index']);

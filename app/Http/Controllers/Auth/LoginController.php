@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Admin\LoginAdmin;
+use App\Services\Auth\LoginAdmin;
 use App\Traits\JsonRespondController;
 use Exception;
 use Illuminate\Http\Request;

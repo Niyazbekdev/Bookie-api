@@ -1,44 +1,49 @@
 <?php
 
-namespace App\Services\Admin;
+namespace App\Services\Auth;
 
 use App\Models\Role;
 use App\Models\User;
 use App\Services\BaseService;
-use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class LoginAdmin extends BaseService
+class Register extends BaseService
 {
     public function rules(): array
     {
         return [
+            'name'=> 'required',
             'phone' => 'required',
             'password' => 'required',
         ];
     }
-
     /**
      * @throws ValidationException
-     * @throws Exception
      */
     public function execute(array $data): array
     {
         $this->validate($data);
-        $user = User::where('phone', $data['phone'])->first();
 
-        if(!$user or !Hash::check($data['password'], $user->password)){
+        $userphone = User::where('phone', $data['phone'])->first();
+        if( ! $userphone){
+            $user = User::create([
+                'role_id' => 3,
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }else{
             throw ValidationException::withMessages([
-                'phone' => 'user not found or password in correct'
+                'phone' => 'The user has already registered'
             ]);
         }
 
-        $role_id = Role::where('id', $user->role_id)->first();
+        $role_id = Role::where('id', 3)->first();
         $role = $role_id['name'];
 
         $token = $user->createToken('user model', [$role])->plainTextToken;
 
-        return [$user, $role, $token];
+        return [$user, $token];
     }
 }

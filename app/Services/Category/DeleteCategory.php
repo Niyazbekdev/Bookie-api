@@ -11,7 +11,7 @@ class DeleteCategory extends BaseService
     public function rules(): array
     {
         return [
-            'id' => 'exists:categories,id',
+            'id' => 'required|exists:categories,id',
         ];
     }
     /**

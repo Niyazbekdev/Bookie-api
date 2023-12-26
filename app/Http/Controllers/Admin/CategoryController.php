@@ -17,11 +17,10 @@ use Illuminate\Validation\ValidationException;
 class CategoryController extends Controller
 {
     use JsonRespondController;
+
     public function index(Request $request): AnonymousResourceCollection
     {
-        $category = Category::when($request->search ?? null, function ($query, $search){
-            $query->search($search);
-        })->paginate(10);
+        $category = Category::paginate($request->limit ?? 10);
         return CategoryResource::collection($category);
     }
 
@@ -40,7 +39,7 @@ class CategoryController extends Controller
         try {
             app(UpdateCategory::class)->execute([
                 'id' => $category,
-                'name' => $request->name,
+                'name' => $request->name
             ]);
             return $this->respondSuccess();
         }catch (ValidationException $exception){
@@ -52,7 +51,7 @@ class CategoryController extends Controller
     {
         try {
             app(DeleteCategory::class)->execute([
-                'id' => $category,
+                'id' => $category
             ]);
             return $this->respondSuccess();
         }catch (ValidationException $exception){

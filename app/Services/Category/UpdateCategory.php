@@ -24,8 +24,8 @@ class UpdateCategory extends BaseService
         $this->validate($data);
 
         $category = Category::findOrFail($data['id']);
-
         $slug = Str::slug($data['name']);
+
         $category->update([
             'name' => $data['name'],
             'slug' => $slug,
