@@ -10,11 +10,13 @@ use App\Http\Controllers\User\SearchBookController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('user/categories', [CategoryController::class, 'index']);
-Route::get('user/categories/{category:slug}/books', [BookController::class, 'index']);
-Route::get('user/books', [SearchBookController::class, 'index']);
-Route::get('/trends', [ManyShowBookController::class, 'index']);
-Route::get('/last-books', [LastAddedBookController::class, 'index']);
+Route::get('/user/categories', [CategoryController::class, 'index']);
+Route::get('/user/categories/{category:slug}/books', [BookController::class, 'index']);
+Route::get('/user/books', [SearchBookController::class, 'index']);
+Route::get('/user/trends', [ManyShowBookController::class, 'index']);
+Route::get('/user/last-books', [LastAddedBookController::class, 'index']);
+Route::get('/user/books/{book:slug}', [BookController::class, 'show']);
+Route::get('/user/books/{book:slug}/reviews', [ReviewController::class, 'index']);
 
 Route::group([
     'prefix'     => 'user',
@@ -22,8 +24,6 @@ Route::group([
     'middleware' => ['auth:sanctum', 'ability:admin,superAdmin,user'],
 ],
     function () {
-        Route::get('/books/{book:slug}', [BookController::class, 'show']);
-        Route::get('/books/{book:slug}/reviews', [ReviewController::class, 'index']);
         Route::post('/books/{book:slug}/reviews', [ReviewController::class, 'store']);
         Route::get('/orders', [OrderController::class, 'index']);
         Route::post('/orders', [OrderController::class, 'store']);
