@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\LastAddedBookController;
+use App\Http\Controllers\User\ManyShowBookController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\SearchBookController;
@@ -23,4 +25,6 @@ Route::group([
         Route::post('/books/{book:slug}/reviews', [ReviewController::class, 'store']);
         Route::get('/orders', [OrderController::class, 'index']);
         Route::post('/orders', [OrderController::class, 'store']);
+        Route::get('/trends', [ManyShowBookController::class, 'index']);
+        Route::get('/last-books', [LastAddedBookController::class, 'index']);
     });
