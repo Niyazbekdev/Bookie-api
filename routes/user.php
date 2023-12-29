@@ -4,11 +4,13 @@ use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\User\SearchBookController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('user/categories', [CategoryController::class, 'index']);
 Route::get('user/categories/{category:slug}/books', [BookController::class, 'index']);
+Route::get('user/books', [SearchBookController::class, 'index']);
 
 Route::group([
     'prefix'     => 'user',
