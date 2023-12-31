@@ -44,6 +44,6 @@ class Register extends BaseService
 
         $token = $user->createToken('user model', [$role])->plainTextToken;
 
-        return [$user, $token];
+        return [$user, $role, $token];
     }
 }

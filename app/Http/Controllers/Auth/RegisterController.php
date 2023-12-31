@@ -16,12 +16,13 @@ class RegisterController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
-           [$user, $token] = app(Register::class)->execute($request->all());
+           [$user, $role, $token] = app(Register::class)->execute($request->all());
 
            return response()->json([
                'Success' => true,
                'data' => [
                    'name' => $user->name,
+                   'role' => $role,
                    'token' => $token,
                ]
            ]);
