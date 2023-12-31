@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class UploadBookImages extends BaseService
@@ -23,12 +24,12 @@ class UploadBookImages extends BaseService
     public function execute(array $data, Book $book): Model
     {
         $this->validate($data);
-        
+
         $images = $book->images()->get();
-        
+
         foreach ($images as $image){
             $image->delete();
-            
+
             Storage::disk('public')->delete('images/'. $image['filename']);
         }
 
