@@ -23,6 +23,14 @@ class UploadBookImages extends BaseService
     public function execute(array $data, Book $book): Model
     {
         $this->validate($data);
+        
+        $images = $book->images()->get();
+        
+        foreach ($images as $image){
+            $image->delete();
+            
+            Storage::disk('public')->delete('images/'. $image['filename']);
+        }
 
         $name = $data['filename']->hashName();
 
