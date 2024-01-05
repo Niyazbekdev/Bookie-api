@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AudioController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BookController;
-use App\Http\Controllers\Admin\BookImagesController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NarratorController;
 use App\Http\Controllers\Admin\OrderController;
@@ -26,7 +26,7 @@ Route::group([
         'reviews' => ReviewController::class,
         'orders' => OrderController::class,
         'users' => UserController::class,
-        'books.images' => BookImagesController::class,
+        'books.images' => ImageController::class,
         'books.audio' => AudioController::class,
     ]);
 });

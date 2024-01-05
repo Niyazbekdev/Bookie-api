@@ -14,7 +14,7 @@ class Audio extends Model
 
     public function url(): string
     {
-        return config('app.url') . '/storage/audios/' . $this->filename;
+        return config('app.url') . '/storage/audio/' . $this->filename;
     }
 
     public function book(): BelongsTo

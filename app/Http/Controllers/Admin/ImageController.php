@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class BookImagesController extends Controller
+class ImageController extends Controller
 {
     use JsonRespondController;
 

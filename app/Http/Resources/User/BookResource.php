@@ -16,6 +16,7 @@ class BookResource extends JsonResource
             'title'  => $this->title,
             'slug' => $this->slug,
             'count' => $this->count,
+            'price' => $this->price,
             'images' =>  ImageResource::collection($this->images),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s')
         ];
