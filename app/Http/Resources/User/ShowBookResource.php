@@ -20,7 +20,7 @@ class ShowBookResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'category' => new CategoryResource($this->category),
-            'image' => ImageResource::collection($this->images),
+            'images' => ImageResource::collection($this->images),
             'audio' => AudioResource::collection($this->audio),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s')
         ];
