@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
@@ -21,9 +22,9 @@ class UploadBookImages extends BaseService
      * @throws ValidationException
      * @throws ModelNotFoundException
      */
-    public function execute(array $data, Book $book): Model
+    public function execute(Request $data, Book $book): Model
     {
-        $this->validate($data);
+        $this->validate($data->all());
 
         $images = $book->images()->get();
 

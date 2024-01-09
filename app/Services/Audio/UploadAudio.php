@@ -5,6 +5,7 @@ namespace App\Services\Audio;
 use App\Models\Book;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -14,20 +15,20 @@ class UploadAudio extends BaseService
     {
         return [
             'title' => 'required',
-            'filename' => 'required|file|mimes:mpeg,mpga,mp3,wav|max:34048'
+            'filename' => 'required|mimes:mp3'
         ];
     }
     /**
      * @throws ValidationException
      */
-    public function execute(array $data, Book $book): Model
+    public function execute(Request $data, Book $book): Model
     {
-        $this->validate($data);
+        $this->validate($data->all());
 
-        $name = $data['filename']->hashName();
+        $name = $data->file('filename')->hashName();
         $slug = Str::slug($data['title']);
 
-        $data['filename']->store('audio', 'public');
+        $data->file('filename')->store('/public/audio');
 
         return $book->audio()->create([
             'title' => $data['title'],

@@ -20,7 +20,7 @@ class ImageController extends Controller
     public function store(Request $request, Book $book): ImageResource|JsonResponse
     {
         try {
-            $image = app(UploadBookImages::class)->execute($request->all(), $book);
+            $image = app(UploadBookImages::class)->execute($request, $book);
             return response()->json([
                 'Success' => true,
                 'data' => new ImageResource($image),

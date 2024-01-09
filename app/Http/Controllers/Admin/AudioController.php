@@ -19,7 +19,7 @@ class AudioController extends Controller
     public function store(Request $request, Book $book): JsonResponse
     {
         try {
-            $audio = app(UploadAudio::class)->execute($request->all(), $book);
+            $audio = app(UploadAudio::class)->execute($request, $book);
             return response()->json([
                 'Success' => true,
                 'data' => new AudioResource($audio),
